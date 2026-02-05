@@ -19,6 +19,10 @@
 int		ft_printf(char const *str, ...);
 void	ft_printchar(char c, int *count);
 void	ft_printstr(char *str, int *count);
+void	ft_printnumber(int n, int *count);
+void	ft_printunsignednumber(unsigned int n, int *count);
+void	ft_printpointer(size_t ptr, int *count);
+void	ft_printhex(unsigned long n, int format, int *count);
 
 
 #endif

@@ -12,6 +12,19 @@
 
 #include "printf.h"
 
+void	ft_printhex(unsigned long n, int format, int *count)
+{
+	char	*base;
+
+	if (format == 'X')
+		base = "0123456789ABCDEF";
+	else
+		base = "0123456789abcdef";
+	if (n >= 16)
+		ft_printhex(n / 16, format, count);
+	ft_printchar(base[n % 16], count);
+}
+
 static void	ft_datatype(char digit, va_list list, int *count)
 {
 	if (digit == 'c')
@@ -20,7 +33,16 @@ static void	ft_datatype(char digit, va_list list, int *count)
 		ft_printchar('%', count);
 	else if (digit == 's')
 		ft_printstr(va_arg(list, char *), count);
-
+	else if (digit == 'i' || digit == 'd')
+		ft_printnumber(va_arg(list, int), count);
+	else if (digit == 'u')
+		ft_printunsignednumber(va_arg(list, unsigned int), count);
+	else if (digit == 'p')
+		ft_printpointer(va_arg(list, size_t), count);
+	else if (digit == 'x')
+		ft_printhex(va_arg(list, unsigned int), 'x', count);
+	else if (digit == 'X')
+		ft_printhex(va_arg(list, unsigned int), 'X', count);
 }
 
 int	ft_printf(char const *str, ...)

@@ -8,7 +8,7 @@ SRCS = ft_printf.c ft_printf_aux.c
 
 OBJS = $(SRCS:.c=.o)
 
-HEADERS = printf.h
+HEADERS = ft_printf.h
 
 all: $(NAME)
 
@@ -18,7 +18,7 @@ $(NAME): $(OBJS) $(HEADERS)
 %.o: %.c $(HEADERS)
 		$(CC) $(CFLAGS) -c $< -o $@
 
-clean: 
+clean:
 		rm -f $(OBJS)
 
 fclean: clean
